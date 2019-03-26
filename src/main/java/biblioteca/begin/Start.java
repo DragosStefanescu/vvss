@@ -1,7 +1,6 @@
 package biblioteca.begin;
 
 import biblioteca.control.BibliotecaCtrl;
-import biblioteca.repository.repo.CartiRepo;
 import biblioteca.repository.repoInterfaces.CartiRepoInterface;
 import biblioteca.repository.repoMock.CartiRepoMock;
 import biblioteca.view.Consola;
@@ -14,21 +13,20 @@ import java.io.IOException;
 //F03.	 afisarea cartilor din biblioteca care au aparut intr-un anumit an, ordonate alfabetic dupa titlu si autori.
 
 
-
 public class Start {
-	
-	public static void main(String[] args) {
-		CartiRepoInterface cr = new CartiRepoMock();
-		BibliotecaCtrl bc = new BibliotecaCtrl(cr);
-		Consola c = new Consola(bc);
-		try {
-			c.executa();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
+
+    public static void main(String[] args) {
+        CartiRepoInterface cr = new CartiRepoMock();
+        BibliotecaCtrl bc = new BibliotecaCtrl(cr);
+        Consola c = new Consola(bc);
+        try {
+            c.executa();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
 //	CartiRepoInterface cr = new CartiRepo();
 //	BibliotecaCtrl bc = new BibliotecaCtrl(cr);
 //	
@@ -65,5 +63,5 @@ public class Start {
 ////		// TODO Auto-generated catch block
 ////		e.printStackTrace();
 ////	}
-	
+
 }
