@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN'>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>testspec Prj236 - sdir2195_BBT</title>
+<link type="text/css" rel="stylesheet" href="https://www.scs.ubbcluj.ro/testlink/gui/themes/default/css/tl_documents.css" />
+<style type="text/css" media="print">.notprintable { display:none;}</style>
+</head>
+<body>
+<div>
+<div style="float:right;">TestLink Community [configure $tlCfg-&gt;document_generator-&gt;company_name]</div>
+<div>&nbsp;</div><hr />
+<p style="text-align: center;"><img alt="TestLink logo" title="configure using $tlCfg->document_generator->company_logo" height="53" src="https://www.scs.ubbcluj.ro/testlink/gui/themes/default/images/tl-logo-transparent-25.png" /></div>
+<div class="doc_title"><p>Test Specification</p></div>
+<div class="doc_title" style="text-align:left;margin: auto;"><p>Test Project: Prj236<br>Test Suite: Prj236 - sdir2195_BBT</p></div>
+<div class="summary"><p id="printedby">Printed by TestLink on 26/03/2019</p></div>
+<div class="pagefooter" id="copyright">2012 &copy; TestLink Community</div>
+<h1 class="doclevel" >Scope</h1>
+<div class="txtlevel"><p>
+	Testing project for group 236.</p></div>
+ <br/><h1 class='doclevel'>Test Suite : sdir2195_BBT</h1>
+<p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="3">Test Case Prj236-38: ECP_Valid</th></tr>
+<tr><td colspan="3"><span class="label">Summary:</span><br /><pre style="font-family: &quot;Courier New&quot;; background-color: rgb(238, 238, 238); font-size: 9pt;">
+<b>adaugaCarte({&quot;Metamorphosis</b><b style="font-size: 9pt;">&quot;,[&quot;Franz Kafka&quot;],1915,[&quot;nuvela&quot;]});</b></pre>
+<p>
+	&nbsp;</p>
+<p>
+	<span style="background-color: rgb(238, 238, 238); font-family: &quot;Trebuchet MS&quot;, Arial, Verdana, sans-serif; font-size: 11.7px;">Expected output :&nbsp;</span>record added</p>
+</td></tr><tr><td colspan="3"><span class="label">Preconditions:</span><br /><p style="margin-top: 0px; font-family: &quot;Trebuchet MS&quot;, Arial, Verdana, sans-serif; font-size: 11.7px; background-color: rgb(238, 238, 238);">
+	<span style="margin: 0px; padding: 0px; font-family: docs-Calibri; font-size: 15px; text-align: center; white-space: pre-wrap; background-color: rgb(255, 255, 255);">titlu : String</span></p>
+<p style="font-family: &quot;Trebuchet MS&quot;, Arial, Verdana, sans-serif; font-size: 11.7px; background-color: rgb(238, 238, 238);">
+	<span style="margin: 0px; padding: 0px; background-color: rgb(255, 255, 255); font-family: docs-Calibri; font-size: 15px; text-align: center; white-space: pre-wrap;">anAparitie : String</span></p>
+<p style="font-family: &quot;Trebuchet MS&quot;, Arial, Verdana, sans-serif; font-size: 11.7px; background-color: rgb(238, 238, 238);">
+	<span style="margin: 0px; padding: 0px; background-color: rgb(255, 255, 255); font-family: docs-Calibri; font-size: 15px; text-align: center; white-space: pre-wrap;">anAparitie : numar valid = [1900;2020]</span></p>
+</td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="2">Manual</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="2"></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="2">Medium</td></tr>
+<tr><td colspan="3"></td></tr></table>
+</div>
+<p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="3">Test Case Prj236-39: BVA_Invalid</th></tr>
+<tr><td colspan="3"><span class="label">Summary:</span><br /><pre>
+adaugaCarte({&quot;&quot;,[&quot;Franz Kafka&quot;],1915,[&quot;nuvela&quot;]});</pre>
+<p>
+	<span style="background-color: rgb(238, 238, 238); font-family: &quot;Trebuchet MS&quot;, Arial, Verdana, sans-serif; font-size: 11.7px;">Expected output :&nbsp;</span>java.lang.Exception: Titlu invalid!</p>
+</td></tr><tr><td colspan="3"><span class="label">Preconditions:</span><br /><p style="margin-top: 0px; font-family: &quot;Trebuchet MS&quot;, Arial, Verdana, sans-serif; font-size: 11.7px; background-color: rgb(238, 238, 238);">
+	<span style="margin: 0px; padding: 0px; font-family: docs-Calibri; font-size: 15px; text-align: center; white-space: pre-wrap; background-color: rgb(255, 255, 255);">titlu : String</span></p>
+<p style="font-family: &quot;Trebuchet MS&quot;, Arial, Verdana, sans-serif; font-size: 11.7px; background-color: rgb(238, 238, 238);">
+	<span style="margin: 0px; padding: 0px; background-color: rgb(255, 255, 255); font-family: docs-Calibri; font-size: 15px; text-align: center; white-space: pre-wrap;">anAparitie : String</span></p>
+<p style="font-family: &quot;Trebuchet MS&quot;, Arial, Verdana, sans-serif; font-size: 11.7px; background-color: rgb(238, 238, 238);">
+	<span style="margin: 0px; padding: 0px; background-color: rgb(255, 255, 255); font-family: docs-Calibri; font-size: 15px; text-align: center; white-space: pre-wrap;">anAparitie : </span><span style="background-color: rgb(255, 255, 255); font-family: docs-Calibri; font-size: 15px; text-align: center; white-space: pre-wrap;">numar valid = [1900;2020]</span></p>
+</td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="2">Manual</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="2"></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="2">Medium</td></tr>
+<tr><td colspan="3"></td></tr></table>
+</div>
+<p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="3">Test Case Prj236-40: BVA_Valid</th></tr>
+<tr><td colspan="3"><span class="label">Summary:</span><br /><pre style="font-family: Arial, Helvetica, sans-serif; font-size: 11.7px; background-color: rgb(238, 238, 238);">
+adaugaCarte({&quot;Metamorphosis&quot;,[&quot;Franz Kafka&quot;],1900,[&quot;nuvela&quot;]});</pre>
+<p style="font-family: &quot;Trebuchet MS&quot;, Arial, Verdana, sans-serif; font-size: 11.7px; background-color: rgb(238, 238, 238);">
+	<span style="margin: 0px; padding: 0px; font-size: 11.7px;">Expected output :&nbsp;record added</span></p>
+</td></tr><tr><td colspan="3"><span class="label">Preconditions:</span><br /><p style="margin-top: 0px; font-family: &quot;Trebuchet MS&quot;, Arial, Verdana, sans-serif; font-size: 11.7px; background-color: rgb(238, 238, 238);">
+	<span style="margin: 0px; padding: 0px; font-family: docs-Calibri; font-size: 15px; text-align: center; white-space: pre-wrap; background-color: rgb(255, 255, 255);">titlu : String</span></p>
+<p style="font-family: &quot;Trebuchet MS&quot;, Arial, Verdana, sans-serif; font-size: 11.7px; background-color: rgb(238, 238, 238);">
+	<span style="margin: 0px; padding: 0px; background-color: rgb(255, 255, 255); font-family: docs-Calibri; font-size: 15px; text-align: center; white-space: pre-wrap;">anAparitie : String</span></p>
+<p style="font-family: &quot;Trebuchet MS&quot;, Arial, Verdana, sans-serif; font-size: 11.7px; background-color: rgb(238, 238, 238);">
+	<span style="margin: 0px; padding: 0px; background-color: rgb(255, 255, 255); font-family: docs-Calibri; font-size: 15px; text-align: center; white-space: pre-wrap;">anAparitie : </span><span style="background-color: rgb(255, 255, 255); font-family: docs-Calibri; font-size: 15px; text-align: center; white-space: pre-wrap;">numar valid = [1900;2020]</span></p>
+</td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="2">Manual</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="2"></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="2">Medium</td></tr>
+<tr><td colspan="3"></td></tr></table>
+</div>
+<p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="3">Test Case Prj236-41: ECP_Invalid</th></tr>
+<tr><td colspan="3"><span class="label">Summary:</span><br /><pre style="font-family: Arial, Helvetica, sans-serif; font-size: 11.7px; background-color: rgb(238, 238, 238);">
+adaugaCarte({&quot;Metamorphosis&quot;,[&quot;Franz K@fka&quot;],1915,[&quot;nuvela&quot;]});</pre>
+<p style="font-family: &quot;Trebuchet MS&quot;, Arial, Verdana, sans-serif; font-size: 11.7px; background-color: rgb(238, 238, 238);">
+	<span style="margin: 0px; padding: 0px; font-size: 11.7px;">Expected output :&nbsp;</span>java.lang.Exception: Autor invalid!</p>
+</td></tr><tr><td colspan="3"><span class="label">Preconditions:</span><br /><p style="margin-top: 0px; font-family: &quot;Trebuchet MS&quot;, Arial, Verdana, sans-serif; font-size: 11.7px; background-color: rgb(238, 238, 238);">
+	<span style="margin: 0px; padding: 0px; font-family: docs-Calibri; font-size: 15px; text-align: center; white-space: pre-wrap; background-color: rgb(255, 255, 255);">titlu : String</span></p>
+<p style="font-family: &quot;Trebuchet MS&quot;, Arial, Verdana, sans-serif; font-size: 11.7px; background-color: rgb(238, 238, 238);">
+	<span style="margin: 0px; padding: 0px; background-color: rgb(255, 255, 255); font-family: docs-Calibri; font-size: 15px; text-align: center; white-space: pre-wrap;">anAparitie : String</span></p>
+<p style="font-family: &quot;Trebuchet MS&quot;, Arial, Verdana, sans-serif; font-size: 11.7px; background-color: rgb(238, 238, 238);">
+	<span style="margin: 0px; padding: 0px; background-color: rgb(255, 255, 255); font-family: docs-Calibri; font-size: 15px; text-align: center; white-space: pre-wrap;">anAparitie : </span><span style="background-color: rgb(255, 255, 255); font-family: docs-Calibri; font-size: 15px; text-align: center; white-space: pre-wrap;">numar valid = [1900;2020]</span></p>
+</td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="2">Manual</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="2"></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="2">Medium</td></tr>
+<tr><td colspan="3"></td></tr></table>
+</div>
+
+</body>
+</html>
