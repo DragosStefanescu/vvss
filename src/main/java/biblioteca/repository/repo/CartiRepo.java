@@ -55,9 +55,9 @@ public class CartiRepo implements CartiRepoInterface {
 
         return lc;
     }
-
+/*
     @Override
-    public List<Carte> cautaCarteDupaAutor(String ref) {
+    public List<Carte> cautaCarteDupaAutor2(String ref) {
         List<Carte> carti = getCarti();
         List<Carte> cartiGasite = new ArrayList<Carte>();
         int i = 0;
@@ -79,6 +79,29 @@ public class CartiRepo implements CartiRepoInterface {
         }
         return cartiGasite;
     }
+*/
+    @Override
+    public List<Carte> cautaCarteDupaAutor(String ref) {
+        List<Carte> carti = getCarti();
+        List<Carte> cartiGasite = new ArrayList<>();
+
+        for (Carte c : carti) {
+            for (String autor : c.getReferenti()) {
+                if (autor.contains(ref)) {
+                    cartiGasite.add(c);
+                    break;
+                }
+            }
+        }
+
+        if(cartiGasite.size() == 0)
+            throw new RuntimeException("No books found");
+
+        return cartiGasite;
+
+        //   return carti.stream().filter(x-> x.getReferenti().stream().anyMatch(refs -> refs.equals(ref))).collect(Collectors.toList());
+    }
+
 
     @Override
     public List<Carte> getCartiOrdonateDinAnul(String an) {
@@ -90,17 +113,12 @@ public class CartiRepo implements CartiRepoInterface {
             }
         }
 
-        Collections.sort(lca, new Comparator<Carte>() {
-
-            @Override
-            public int compare(Carte a, Carte b) {
-                if (a.getTitlu().compareTo(b.getTitlu()) == 0) {
-                    return a.getReferenti().get(0).compareTo(b.getReferenti().get(0));
-                }
-
-                return a.getTitlu().compareTo(b.getTitlu());
+        lca.sort((a, b) -> {
+            if (a.getTitlu().compareTo(b.getTitlu()) == 0) {
+                return a.getReferenti().get(0).compareTo(b.getReferenti().get(0));
             }
 
+            return a.getTitlu().compareTo(b.getTitlu());
         });
 
         return lca;

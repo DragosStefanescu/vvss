@@ -17,13 +17,6 @@ public class CartiRepoMock implements CartiRepoInterface {
     public CartiRepoMock() {
         carti = new ArrayList<Carte>();
 
-        carti.add(CarteUtil.getCarteFromString("Povesti;Mihai Eminescu,Ion Caragiale,Ion Creanga;1973;Corint;povesti,povestiri"));
-        carti.add(CarteUtil.getCarteFromString("Poezii;Sadoveanu;1973;Corint;poezii"));
-        carti.add(CarteUtil.getCarteFromString("Enigma Otiliei;George Calinescu;1948;Litera;enigma,otilia"));
-        carti.add(CarteUtil.getCarteFromString("Dale carnavalului;Caragiale Ion;1948;Litera;caragiale,carnaval"));
-        carti.add(CarteUtil.getCarteFromString("Intampinarea crailor;Mateiu Caragiale;1948;Litera;mateiu,crailor"));
-        carti.add(CarteUtil.getCarteFromString("Test;Calinescu,Tetica;1992;Pipa;am,casa"));
-
     }
 
     @Override
@@ -32,28 +25,28 @@ public class CartiRepoMock implements CartiRepoInterface {
     }
 
     @Override
+    @SuppressWarnings("Duplicates")
     public List<Carte> cautaCarteDupaAutor(String ref) {
         List<Carte> carti = getCarti();
-        List<Carte> cartiGasite = new ArrayList<Carte>();
-        int i = 0;
-        while (i < carti.size()) {
-            boolean flag = false;
-            List<String> lref = carti.get(i).getReferenti();
-            int j = 0;
-            while (j < lref.size()) {
-                if (lref.get(j).toLowerCase().contains(ref.toLowerCase())) {
-                    flag = true;
+        List<Carte> cartiGasite = new ArrayList<>();
+
+        for (Carte c : carti) {
+            for (String autor : c.getReferenti()) {
+                if (autor.contains(ref)) {
+                    cartiGasite.add(c);
                     break;
                 }
-                j++;
             }
-            if (flag == true) {
-                cartiGasite.add(carti.get(i));
-            }
-            i++;
         }
+
+        if(cartiGasite.size() == 0)
+            throw new RuntimeException("No books found");
+
         return cartiGasite;
+
+        //   return carti.stream().filter(x-> x.getReferenti().stream().anyMatch(refs -> refs.equals(ref))).collect(Collectors.toList());
     }
+
 
     @Override
     public List<Carte> getCarti() {
