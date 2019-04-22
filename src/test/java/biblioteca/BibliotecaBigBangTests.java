@@ -1,8 +1,7 @@
-package biblioteca.repository;
+package biblioteca;
 
-
+import biblioteca.control.BibliotecaCtrl;
 import biblioteca.model.Carte;
-import biblioteca.repository.repo.CartiRepo;
 import biblioteca.repository.repoMock.CartiRepoMock;
 import org.junit.Assert;
 import org.junit.Before;
@@ -10,22 +9,22 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
-public class CartiRepoTest {
+public class BibliotecaBigBangTests {
     Carte carte;
     Carte carte2;
     CartiRepoMock cr;
+    BibliotecaCtrl bc = new BibliotecaCtrl(new CartiRepoMock());
 
     @Before
     public void setUp() {
         cr = new CartiRepoMock();
-
-
     }
 
     @Test(expected = RuntimeException.class)
-    public void cautaCarte_noResults() {
+    public void adaugaCarte_noResults() {
         carte = new Carte();
 
         List<String> keyword = new ArrayList<String>();
@@ -43,37 +42,11 @@ public class CartiRepoTest {
 
     }
 
-
     @Test(expected = RuntimeException.class)
-    public void cautaCarte_noBooks() {
-        cr.cautaCarteDupaAutor("Iom");
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void cautaCarte_noMatching() {
+    public void cautaCarteDupaAutor_noResults() {
         carte = new Carte();
 
-        List<String> keyword = new ArrayList<String>();
-        keyword.add("keyword");
-        List<String> referenti = new ArrayList<>(Arrays.asList("Caragiale", "Creanga", "Mihai Eminescu"));
-        carte.setAnAparitie("1915");
-
-        carte.setCuvinteCheie(keyword);
-        carte.setReferenti(referenti);
-        carte.setTitlu("Povesti");
-
-        cr.adaugaCarte(carte);
-
-        cr.cautaCarteDupaAutor("Ion");
-
-    }
-
-    @Test
-    public void cautaCarte_matching() {
-        carte = new Carte();
-        carte2 = new Carte();
-
-        List<String> keyword = new ArrayList<String>();
+        List<String> keyword = new ArrayList<>();
         keyword.add("keyword");
         List<String> referenti = new ArrayList<>(Arrays.asList("Ion Caragiale", "Ion Creanga", "Mihai Eminescu"));
         carte.setAnAparitie("1915");
@@ -82,15 +55,9 @@ public class CartiRepoTest {
         carte.setReferenti(referenti);
         carte.setTitlu("Povesti");
 
-        carte2.setCuvinteCheie(keyword);
-        carte2.setReferenti(referenti);
-        carte2.setTitlu("Poezii");
-
         cr.adaugaCarte(carte);
-        cr.adaugaCarte(carte2);
 
-        Assert.assertEquals(cr.cautaCarteDupaAutor("Ion").size(),2);
-
+        cr.cautaCarteDupaAutor("ajutor");
     }
 
 
@@ -114,20 +81,33 @@ public class CartiRepoTest {
 
 
     @Test
-    public void cautaCarteDinAnul_noResults() {
-        carte = new Carte();
+    public void integrationTest() {
+        try {
+            carte = new Carte();
+            carte.setAnAparitie("1915");
+            carte.setCuvinteCheie(new ArrayList<>(Collections.singletonList("keyword")));
+            carte.setReferenti(new ArrayList<>(Arrays.asList("Ion Caragiale", "Ion Creanga", "Mihai Eminescu")));
+            carte.setTitlu("Povesti");
 
-        List<String> keyword = new ArrayList<>();
-        keyword.add("keyword");
-        List<String> referenti = new ArrayList<>(Arrays.asList("Ion Caragiale", "Ion Creanga", "Mihai Eminescu"));
-        carte.setAnAparitie("1915");
+            bc.adaugaCarte(carte);
 
-        carte.setCuvinteCheie(keyword);
-        carte.setReferenti(referenti);
-        carte.setTitlu("Povesti");
+            carte2 = new Carte();
+            carte2.setAnAparitie("1914");
+            carte.setCuvinteCheie(new ArrayList<>(Collections.singletonList("keyword")));
+            carte2.setReferenti(new ArrayList<>(Collections.singletonList("Mihai Eminescu")));
+            carte2.setTitlu("Povestiri");
 
-        cr.adaugaCarte(carte);
+            bc.adaugaCarte(carte2);
 
-        Assert.assertEquals(cr.getCartiOrdonateDinAnul("1916").size(), 0);
+            Assert.assertEquals(bc.cautaCarteDupaAutor("Mihai Eminescu").size(), 2);
+            Assert.assertEquals(bc.cautaCarteDupaAutor("Ion Caragiale").size(), 1);
+
+
+            Assert.assertEquals(bc.getCartiOrdonateDinAnul("1915").size(), 1);
+            Assert.assertEquals(bc.getCartiOrdonateDinAnul("1917").size(), 0);
+        } finally {
+            bc.getCarti().remove(carte);
+            bc.getCarti().remove(carte2);
+        }
     }
 }

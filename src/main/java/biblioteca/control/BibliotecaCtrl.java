@@ -15,23 +15,23 @@ public class BibliotecaCtrl {
         this.cr = cr;
     }
 
-    public void adaugaCarte(Carte c) throws Exception {
+    public void adaugaCarte(Carte c) {
         Validator.validateCarte(c);
         cr.adaugaCarte(c);
     }
 
-    public List<Carte> cautaCarteDupaAutor(String autor) throws Exception {
+    public List<Carte> cautaCarteDupaAutor(String autor) {
         Validator.isStringOK(autor);
         return cr.cautaCarteDupaAutor(autor);
     }
 
-    public List<Carte> getCarti() throws Exception {
+    public List<Carte> getCarti() {
         return cr.getCarti();
     }
 
-    public List<Carte> getCartiOrdonateDinAnul(String an) throws Exception {
+    public List<Carte> getCartiOrdonateDinAnul(String an) {
         if (!Validator.isNumber(an))
-            throw new Exception("Nu e numar!");
+            throw new RuntimeException("Nu e numar!");
         return cr.getCartiOrdonateDinAnul(an);
     }
 

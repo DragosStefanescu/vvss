@@ -11,14 +11,19 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CartiRepo implements CartiRepoInterface {
 
-    private String file = "out/cartiBD.txt";
+    private String filename = "cartiBD.dat";
+    private File file;
 
     public CartiRepo() {
         URL location = CartiRepo.class.getProtectionDomain().getCodeSource().getLocation();
         System.out.println(location.getFile());
+        file = new File(
+                getClass().getClassLoader().getResource(filename).getFile()
+        );
     }
 
     @Override
@@ -37,7 +42,7 @@ public class CartiRepo implements CartiRepoInterface {
 
     @Override
     public List<Carte> getCarti() {
-        List<Carte> lc = new ArrayList<Carte>();
+        List<Carte> lc = new ArrayList<>();
         BufferedReader br;
         try {
             br = new BufferedReader(new FileReader(file));
@@ -55,32 +60,9 @@ public class CartiRepo implements CartiRepoInterface {
 
         return lc;
     }
-/*
+
     @Override
-    public List<Carte> cautaCarteDupaAutor2(String ref) {
-        List<Carte> carti = getCarti();
-        List<Carte> cartiGasite = new ArrayList<Carte>();
-        int i = 0;
-        while (i <= carti.size()) {
-            boolean flag = false;
-            List<String> lref = carti.get(i).getReferenti();
-            int j = 0;
-            while (j < lref.size()) {
-                if (lref.get(j).toLowerCase().contains(ref.toLowerCase())) {
-                    flag = true;
-                    break;
-                }
-                j++;
-            }
-            if (flag == true) {
-                cartiGasite.add(carti.get(i));
-            }
-            i++;
-        }
-        return cartiGasite;
-    }
-*/
-    @Override
+    @SuppressWarnings("Duplicates")
     public List<Carte> cautaCarteDupaAutor(String ref) {
         List<Carte> carti = getCarti();
         List<Carte> cartiGasite = new ArrayList<>();
@@ -94,7 +76,7 @@ public class CartiRepo implements CartiRepoInterface {
             }
         }
 
-        if(cartiGasite.size() == 0)
+        if (cartiGasite.size() == 0)
             throw new RuntimeException("No books found");
 
         return cartiGasite;
@@ -104,24 +86,10 @@ public class CartiRepo implements CartiRepoInterface {
 
 
     @Override
+    @SuppressWarnings("Duplicates")
     public List<Carte> getCartiOrdonateDinAnul(String an) {
-        List<Carte> lc = getCarti();
-        List<Carte> lca = new ArrayList<Carte>();
-        for (Carte c : lc) {
-            if (c.getAnAparitie().equals(an)) {
-                lca.add(c);
-            }
-        }
-
-        lca.sort((a, b) -> {
-            if (a.getTitlu().compareTo(b.getTitlu()) == 0) {
-                return a.getReferenti().get(0).compareTo(b.getReferenti().get(0));
-            }
-
-            return a.getTitlu().compareTo(b.getTitlu());
-        });
-
-        return lca;
+       return getCarti().stream().filter(book -> book.getAnAparitie().equals(an)).sorted(Comparator.comparing(Carte::getTitlu).thenComparing(carte->carte.getReferenti().get(0))).collect(Collectors.toList());
     }
+
 
 }

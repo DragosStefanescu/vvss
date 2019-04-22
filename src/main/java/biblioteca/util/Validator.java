@@ -4,32 +4,32 @@ import biblioteca.model.Carte;
 
 public class Validator {
 
-    public static boolean isStringOK(String s) throws Exception {
+    public static boolean isStringOK(String s) {
         boolean flag = s.matches("[a-zA-Z ]+");
         if (!flag)
-            throw new Exception("String invalid");
+            throw new RuntimeException("String invalid");
         return flag;
     }
 
-    public static void validateCarte(Carte c) throws Exception {
+    public static void validateCarte(Carte c) {
         if (c.getCuvinteCheie() == null) {
-            throw new Exception("Lista cuvinte cheie vida!");
+            throw new RuntimeException("Lista cuvinte cheie vida!");
         }
         if (c.getReferenti() == null) {
-            throw new Exception("Lista autori vida!");
+            throw new RuntimeException("Lista autori vida!");
         }
         if (!isOKString(c.getTitlu()))
-            throw new Exception("Titlu invalid!");
+            throw new RuntimeException("Titlu invalid!");
         for (String s : c.getReferenti()) {
             if (!isOKString(s))
-                throw new Exception("Autor invalid!");
+                throw new RuntimeException("Autor invalid!");
         }
         for (String s : c.getCuvinteCheie()) {
             if (!isOKString(s))
-                throw new Exception("Cuvant cheie invalid!");
+                throw new RuntimeException("Cuvant cheie invalid!");
         }
         if (!Validator.isNumber(c.getAnAparitie()))
-            throw new Exception("An aparitie invalid!");
+            throw new RuntimeException("An aparitie invalid!");
     }
 
     public static boolean isNumber(String s) {

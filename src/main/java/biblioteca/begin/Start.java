@@ -1,6 +1,7 @@
 package biblioteca.begin;
 
 import biblioteca.control.BibliotecaCtrl;
+import biblioteca.repository.repo.CartiRepo;
 import biblioteca.repository.repoInterfaces.CartiRepoInterface;
 import biblioteca.repository.repoMock.CartiRepoMock;
 import biblioteca.view.Consola;
@@ -16,7 +17,7 @@ import java.io.IOException;
 public class Start {
 
     public static void main(String[] args) {
-        CartiRepoInterface cr = new CartiRepoMock();
+        CartiRepoInterface cr = new CartiRepo();
         BibliotecaCtrl bc = new BibliotecaCtrl(cr);
         Consola c = new Consola(bc);
         try {
